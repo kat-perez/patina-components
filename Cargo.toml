@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["placeholder"]
+members = ["patina_storage_nvme", "placeholder"]
 
 [workspace.package]
 version = "0.0.1"
@@ -11,7 +11,18 @@ description = "Patina components"
 repository = "https://github.com/OpenDevicePartnership/patina-components"
 
 [workspace.dependencies]
-patina = { version = "21"}
+log = { version = "0.4", default-features = false }
+mockall = { version = "0.13" }
+patina = { version = "21" }
+patina_macro = { version = "21" }
+r-efi = { version = "5", default-features = false }
+
+# Pre-publish dev: redirect every published patina_* crate to the local checkout so
+# the new BootStorageService trait (added on the kat-perez/boot-storage-service-trait
+# patina branch) is visible. Drop this block once the trait lands in patina main.
+[patch.crates-io]
+patina = { path = "../patina/sdk/patina" }
+patina_macro = { path = "../patina/sdk/patina_macro" }
 
 [workspace.lints.clippy]
 undocumented_unsafe_blocks = "warn"

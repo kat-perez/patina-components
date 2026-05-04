@@ -1,0 +1,25 @@
+[package]
+name = "patina_storage_nvme"
+description = "NVMe boot-storage service implementation for Patina"
+version.workspace = true
+license.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+log = { workspace = true }
+patina = { workspace = true }
+patina_macro = { workspace = true }
+r-efi = { workspace = true }
+
+[dev-dependencies]
+patina = { workspace = true, features = ["mockall"] }
+mockall = { workspace = true }
+
+[features]
+default = []
+std = []
